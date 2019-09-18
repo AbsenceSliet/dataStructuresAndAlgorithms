@@ -62,3 +62,31 @@ testTime(8,finbonaci1)
 testTime(8,finbonaci3)
 testTime(8,finbonaci4)
 testTime(8,finbonaci5)
+
+
+
+question  = [{id:'1'},{id:'2'},{id:'3'},{id:'4'}]
+answer = [{id:'3'},{id:'1'}]
+result = []
+
+question.map((item,index)=>{
+    for(let value of answer){
+        if(item.id=== value.id){
+            result.push(index)
+        }
+    }
+})
+
+
+
+
+const cdnExtenial = ['react','react-router','redux']
+
+
+/*CDN 服务 host：cdn.bootcss.com/
+包名：react
+版本号：16.9.0
+包路径：umd/react.production.min.js
+*/
+
+//编写webpack插件 自动生成 CDN Link script 标签  ，
