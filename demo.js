@@ -63,3 +63,115 @@ hTable.showDistro()
 // 82:Mike
 // 103:Cynthia
 // 110:Danny
+
+/**
+ * 实现二叉查找树
+ * 
+ */
+
+function Node(key){
+    this.key = key
+    this.left = null
+    this.right = null
+}
+function BST(){
+    this.root =  null
+    this.time  =  new Date().getTime()
+    console.log(this.time)
+    // 树中插入键
+    this.insert  = function(key){
+        let newNode  = new Node(key)
+        // console.log(this)
+        var insertNode =  function(node,newNode){
+            console.log(node,newNode)
+            if(node.key>newNode.key){
+                if(node.left===null){
+                    node.left = newNode
+                }else{
+                    insertNode(node.left,newNode)
+                }
+            }else{
+                if(node.right===null){
+                    node.right = newNode
+                }else{
+                    insertNode(node.right,newNode)
+                }
+            }
+        }
+        if(this.root === null){
+            this.root = newNode
+        }else{
+            insertNode(this.root,newNode)
+        }
+
+    }
+
+    // 中序遍历
+    this.middleOrder = function (callback){
+        const middleOrderNode =  function(node,callback){
+            if(node!=null){
+                middleOrderNode(node.left,callback)
+                callback(node.key)
+                middleOrderNode(node.right,callback)
+            }
+        }
+        middleOrderNode(this.root,callback)
+    }
+    // 先序遍历
+    this.preOrder = function (callback){
+        const middleOrderNode =  function(node,callback){
+            if(node!=null){
+                callback(node.key)
+                middleOrderNode(node.left,callback)
+                middleOrderNode(node.right,callback)
+            }
+        }
+        middleOrderNode(this.root,callback)
+    }
+    // 后序遍历
+    this.backOrder = function (callback){
+        const middleOrderNode =  function(node,callback){
+            if(node!=null){
+                middleOrderNode(node.left,callback)
+                middleOrderNode(node.right,callback)
+                callback(node.key)
+            }
+        }
+        middleOrderNode(this.root,callback)
+    }
+}
+let testArr = [3,9,10,18,7,16,99,6]
+let tree = new BST()
+
+// tree.insert(9)
+// tree.insert(10)
+// tree.insert(22)
+// tree.insert(28)
+// tree.insert(16)
+// tree.insert(5)
+
+testArr.forEach(val=>{
+    tree.insert(val)
+})
+// 树的遍历, 中序遍历,先序遍历,后序遍历
+// 中序遍历 按照节点上的值 以升序的方式遍历 先访问左子树,再访问根节点,最后访问右子树
+// 先序遍历 先访问根节点 然后以同样方式访问左节点和右节点
+// 后序遍历  先访问叶子节点,先访问左子树,再访问右子树,最后访问根节点
+
+let time1 = time2 = time3 = 0
+tree.middleOrder((val)=>{
+    let cousumeTime = new Date().getTime() - tree.time
+    time1 +=cousumeTime 
+    console.log(val,'45678956789')
+})
+tree.preOrder((val)=>{
+    let cousumeTime = new Date().getTime() - tree.time
+    time2 +=cousumeTime 
+    console.log(val,'45678956789')
+})
+tree.backOrder((val)=>{
+    let cousumeTime = new Date().getTime() - tree.time
+    time3 +=cousumeTime 
+    console.log(val,'45678956789')
+})
+console.log(time1,time2,time3)
