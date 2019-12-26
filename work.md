@@ -19,7 +19,10 @@ rm -rf project
 ```
 git clone  git://github.com/username/newProject.git
 ```
-
+#### 删除远程分支
+```
+git push origin --delete 分支名
+```
 
 #### 非顺序数据结构 
 - 散列表

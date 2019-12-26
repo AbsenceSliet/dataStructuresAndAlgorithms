@@ -82,22 +82,22 @@ function BST(){
     this.insert  = function(key){
         let newNode  = new Node(key)
         // console.log(this)
-        var insertNode =  function(node,newNode){
-            console.log(node,newNode)
-            if(node.key>newNode.key){
-                if(node.left===null){
-                    node.left = newNode
-                }else{
-                    insertNode(node.left,newNode)
-                }
-            }else{
-                if(node.right===null){
-                    node.right = newNode
-                }else{
-                    insertNode(node.right,newNode)
-                }
-            }
-        }
+        // var insertNode =  function(node,newNode){
+        //     console.log(node,newNode)
+        //     if(node.key>newNode.key){
+        //         if(node.left===null){
+        //             node.left = newNode
+        //         }else{
+        //             insertNode(node.left,newNode)
+        //         }
+        //     }else{
+        //         if(node.right===null){
+        //             node.right = newNode
+        //         }else{
+        //             insertNode(node.right,newNode)
+        //         }
+        //     }
+        // }
         if(this.root === null){
             this.root = newNode
         }else{
@@ -140,6 +140,22 @@ function BST(){
         middleOrderNode(this.root,callback)
     }
 }
+function insertNode(node,newNode){
+    console.log(node,newNode)
+    if(node.key>newNode.key){
+        if(node.left===null){
+            node.left = newNode
+        }else{
+            insertNode(node.left,newNode)
+        }
+    }else{
+        if(node.right===null){
+            node.right = newNode
+        }else{
+            insertNode(node.right,newNode)
+        }
+    }
+}
 let testArr = [3,9,10,18,7,16,99,6]
 let tree = new BST()
 
@@ -175,3 +191,15 @@ tree.backOrder((val)=>{
     console.log(val,'45678956789')
 })
 console.log(time1,time2,time3)
+
+
+var c_test = {
+    a:1,
+    b:{
+        c:function(){
+            console.log(this.d)
+        },
+        d:1
+    }
+}
+c_test.b.c()
