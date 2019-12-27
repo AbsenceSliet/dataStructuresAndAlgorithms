@@ -23,7 +23,11 @@ git clone  git://github.com/username/newProject.git
 ```
 git push origin --delete 分支名
 ```
-
+#### 创建远程分支
+```
+git checkout -b newName
+git push origin newName
+```
 #### 非顺序数据结构 
 - 散列表
 - 树
