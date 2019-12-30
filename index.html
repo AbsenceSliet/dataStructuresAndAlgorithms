@@ -5,11 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vue源码解析</title>
+    <title>源码解析</title>
+    <!-- <script src="./vue.read.js"></script> -->
+    <script src="vue/vue.js"></script>
 </head>
 
 <body>
-
+    <div id="root">
+        <div>{{message}}</div>
+        <img :src="url" alt="" />
+        <button>asgfhjdkl</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                id: 1,
+                message: '第三天 message',
+                url: 'https://ae01.alicdn.com/kf/HTB1eE2mXPlxYKJjSZFuq6yYlVXay/Laeacco-Seaside-Wooden-View-Bridge-Platform-Scenic-Photography-Backgrounds-Vinyl-Custom-Photographic-Backdrops-For-Photo-Studio.jpg_640x640.jpg'
+            },
+            created() {
+                // console.log(this)
+            }
+        })
+    </script>
 </body>
 
 </html>
