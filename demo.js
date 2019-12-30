@@ -1,48 +1,52 @@
-function HashTable(){
+function HashTable() {
     this.table = new Array(137)
-    this.simpleHash  = simpleHash
+    this.simpleHash = simpleHash
     this.put = put
     this.showDistro = showDistro
     this.betterHash = betterHash
 }
-function  simpleHash(data){
+
+function simpleHash(data) {
     var total = 0;
-    for(var i = 0; i<data.length; i++){
-        total+=data.charCodeAt(i)
+    for (var i = 0; i < data.length; i++) {
+        total += data.charCodeAt(i)
     }
-    console.log('hash value--',data,'->',total)
-    return total% this.table.length
+    console.log('hash value--', data, '->', total)
+    return total % this.table.length
 }
-function put(data){
+
+function put(data) {
     var pos = this.betterHash(data)
     this.table[pos] = data
 }
-function showDistro(){
-    var n = 0 ;
-    for(var i = 0;i<this.table.length; i++){
-        if(this.table[i]!=undefined){
-            console.log(i+':'+this.table[i])
+
+function showDistro() {
+    var n = 0;
+    for (var i = 0; i < this.table.length; i++) {
+        if (this.table[i] != undefined) {
+            console.log(i + ':' + this.table[i])
         }
     }
 }
-function betterHash(string){
+
+function betterHash(string) {
     const H = 37;
     var total = 0;
     for (var i = 0; i < string.length; ++i) {
-       total += H * total + string.charCodeAt(i);
+        total += H * total + string.charCodeAt(i);
     }
-    total = total % this.table.length; 
-    console.log('hash value--',string,'->',total)
-    if(total<0){
-       total += this.table.length-1;
+    total = total % this.table.length;
+    console.log('hash value--', string, '->', total)
+    if (total < 0) {
+        total += this.table.length - 1;
     }
-    
+
     return parseInt(total);
 }
-var someNames = ["David", "Jennifer", "Donnie", "Raymond","Cynthia", "Mike", "Clayton", "Danny", "Jonathan"];
+var someNames = ["David", "Jennifer", "Donnie", "Raymond", "Cynthia", "Mike", "Clayton", "Danny", "Jonathan"];
 var hTable = new HashTable()
 
-for(var  i =0; i< someNames.length;i++){
+for (var i = 0; i < someNames.length; i++) {
     hTable.put(someNames[i])
 }
 hTable.showDistro()
@@ -69,18 +73,19 @@ hTable.showDistro()
  * 
  */
 
-function Node(key){
+function Node(key) {
     this.key = key
     this.left = null
     this.right = null
 }
-function BST(){
-    this.root =  null
-    this.time  =  new Date().getTime()
+
+function BST() {
+    this.root = null
+    this.time = new Date().getTime()
     console.log(this.time)
     // 树中插入键
-    this.insert  = function(key){
-        let newNode  = new Node(key)
+    this.insert = function (key) {
+        let newNode = new Node(key)
         // console.log(this)
         // var insertNode =  function(node,newNode){
         //     console.log(node,newNode)
@@ -98,65 +103,66 @@ function BST(){
         //         }
         //     }
         // }
-        if(this.root === null){
+        if (this.root === null) {
             this.root = newNode
-        }else{
-            insertNode(this.root,newNode)
+        } else {
+            insertNode(this.root, newNode)
         }
 
     }
 
     // 中序遍历
-    this.middleOrder = function (callback){
-        const middleOrderNode =  function(node,callback){
-            if(node!=null){
-                middleOrderNode(node.left,callback)
+    this.middleOrder = function (callback) {
+        const middleOrderNode = function (node, callback) {
+            if (node != null) {
+                middleOrderNode(node.left, callback)
                 callback(node.key)
-                middleOrderNode(node.right,callback)
+                middleOrderNode(node.right, callback)
             }
         }
-        middleOrderNode(this.root,callback)
+        middleOrderNode(this.root, callback)
     }
     // 先序遍历
-    this.preOrder = function (callback){
-        const middleOrderNode =  function(node,callback){
-            if(node!=null){
+    this.preOrder = function (callback) {
+        const middleOrderNode = function (node, callback) {
+            if (node != null) {
                 callback(node.key)
-                middleOrderNode(node.left,callback)
-                middleOrderNode(node.right,callback)
+                middleOrderNode(node.left, callback)
+                middleOrderNode(node.right, callback)
             }
         }
-        middleOrderNode(this.root,callback)
+        middleOrderNode(this.root, callback)
     }
     // 后序遍历
-    this.backOrder = function (callback){
-        const middleOrderNode =  function(node,callback){
-            if(node!=null){
-                middleOrderNode(node.left,callback)
-                middleOrderNode(node.right,callback)
+    this.backOrder = function (callback) {
+        const middleOrderNode = function (node, callback) {
+            if (node != null) {
+                middleOrderNode(node.left, callback)
+                middleOrderNode(node.right, callback)
                 callback(node.key)
             }
         }
-        middleOrderNode(this.root,callback)
+        middleOrderNode(this.root, callback)
     }
 }
-function insertNode(node,newNode){
-    console.log(node,newNode)
-    if(node.key>newNode.key){
-        if(node.left===null){
+
+function insertNode(node, newNode) {
+    console.log(node, newNode)
+    if (node.key > newNode.key) {
+        if (node.left === null) {
             node.left = newNode
-        }else{
-            insertNode(node.left,newNode)
+        } else {
+            insertNode(node.left, newNode)
         }
-    }else{
-        if(node.right===null){
+    } else {
+        if (node.right === null) {
             node.right = newNode
-        }else{
-            insertNode(node.right,newNode)
+        } else {
+            insertNode(node.right, newNode)
         }
     }
 }
-let testArr = [3,9,10,18,7,16,99,6]
+let testArr = [3, 9, 10, 18, 7, 16, 99, 6]
 let tree = new BST()
 
 // tree.insert(9)
@@ -166,7 +172,7 @@ let tree = new BST()
 // tree.insert(16)
 // tree.insert(5)
 
-testArr.forEach(val=>{
+testArr.forEach(val => {
     tree.insert(val)
 })
 // 树的遍历, 中序遍历,先序遍历,后序遍历
@@ -175,31 +181,31 @@ testArr.forEach(val=>{
 // 后序遍历  先访问叶子节点,先访问左子树,再访问右子树,最后访问根节点
 
 let time1 = time2 = time3 = 0
-tree.middleOrder((val)=>{
+tree.middleOrder((val) => {
     let cousumeTime = new Date().getTime() - tree.time
-    time1 +=cousumeTime 
-    console.log(val,'45678956789')
+    time1 += cousumeTime
+    console.log(val, '45678956789')
 })
-tree.preOrder((val)=>{
+tree.preOrder((val) => {
     let cousumeTime = new Date().getTime() - tree.time
-    time2 +=cousumeTime 
-    console.log(val,'45678956789')
+    time2 += cousumeTime
+    console.log(val, '45678956789')
 })
-tree.backOrder((val)=>{
+tree.backOrder((val) => {
     let cousumeTime = new Date().getTime() - tree.time
-    time3 +=cousumeTime 
-    console.log(val,'45678956789')
+    time3 += cousumeTime
+    console.log(val, '45678956789')
 })
-console.log(time1,time2,time3)
+console.log(time1, time2, time3)
 
 
 var c_test = {
-    a:1,
-    b:{
-        c:function(){
+    a: 1,
+    b: {
+        c: function () {
             console.log(this.d)
         },
-        d:1
+        d: 1
     }
 }
 c_test.b.c()
