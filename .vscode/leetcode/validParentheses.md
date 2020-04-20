@@ -1,4 +1,6 @@
-# 题目描述
+# 2020 年 4 月 16 日
+
+## 题目描述
 
 ```javascript
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
