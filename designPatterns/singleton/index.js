@@ -37,7 +37,7 @@ Singleton1.getInstance = (function () {
   };
 })();
 var a1 = Singleton1.getInstance("test1");
-var b2 = Singleton1.getInstance("test2");
+var b1 = Singleton1.getInstance("test2");
 console.log(a1, b1);
 console.log(a1 === b1); //true
 //  a 和 b 是同一个实例
@@ -70,3 +70,48 @@ var b2 = new CreateDiv("test2");
 console.log(a2, b2);
 console.log(a2 === b2); //true
 // CreateDiv 做了两件事情 ,第一创建instance 并且执行初始化init函数,第二保证只有一个对象即instance
+
+/**
+ * 使用代理实现单例模式
+ */
+var CreateDiv1 = function (html) {
+  this.html = html;
+  this.init();
+};
+CreateDiv1.prototype.init = function () {
+  var div = document.createElement("div");
+  div.innerHTML = this.html;
+  document.body.appendChild(div);
+};
+// 引入代理lei proxySingletonCreatediv
+var proxySingletonCreatediv = (function () {
+  var instance;
+  return function (html) {
+    if (!instance) {
+      instance = new CreateDiv1(html);
+    }
+    return instance;
+  };
+})();
+var a3 = new proxySingletonCreatediv("test1");
+var b3 = new proxySingletonCreatediv("test2");
+console.log(a3, b3, a3 === b3); // true
+
+// 通过引入代理类 同样实现了单例模式， 只是将功能区分开， 使用proxySingletonCreatediv 管理单例的逻辑,CreateDiv1只是一个普通的创建div类
+
+var myApp = {};
+myApp.nameSpace = function (name) {
+  var parts = name.split(".");
+  var current = myApp;
+  for (var i in parts) {
+    console.log(parts[i], current);
+    if (!current[parts[i]]) {
+      current[parts[i]] = {};
+    }
+    current = current[parts[i]];
+  }
+};
+// myApp.nameSpace("test");
+// myApp.nameSpace("test1.a");
+myApp.nameSpace("test2.b.c");
+console.log(myApp);
