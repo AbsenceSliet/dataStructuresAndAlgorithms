@@ -115,3 +115,49 @@ myApp.nameSpace = function (name) {
 // myApp.nameSpace("test1.a");
 myApp.nameSpace("test2.b.c");
 console.log(myApp);
+/**
+ *
+ * @param {*} nums1
+ * @param {*} m
+ * @param {*} nums2
+ * @param {*} n
+ *  如果prenums[p1]> nums2[p2] ===>nums[current] = nums[p2]
+ * var nums1 = [1, 2, 3, 0, 0, 0],
+  nums2 = [2, 5, 6],
+  p1 ----0  prenums[p1] ---1
+  p2----0   nums2[p2] ----2
+ */
+// var merge = function (nums1, m, nums2, n) {
+//   var pre_nums = JSON.parse(JSON.stringify(nums1));
+
+//   var p1 = 0,
+//     p2 = 0;
+//   var current = 0;
+//   while (p1 < m && p2 < n) {
+//     nums1[current++] = pre_nums[p1] < nums2[p2] ? pre_nums[p1++] : nums2[p2++];
+//   }
+//   if (p1 < m) {
+//     nums1.splice(current, m - p1, ...pre_nums.slice(p1, m));
+//   }
+//   if (p2 < n) {
+//     nums1.splice(current, n - p2, ...nums2.slice(p2, n));
+//   }
+//   console.log(nums1, "99999", current, p1, p2);
+// };
+// var merge = function (nums1, m, nums2, n) {
+//   var p1 = m - 1,
+//     p2 = n - 1,
+//     current = m + n - 1;
+//   while (p1 >= 0 && p2 >= 0) {
+//     nums1[current--] = nums1[p1] < nums2[p2] ? nums2[p2--] : nums1[p1--];
+//   }
+//   if (p2 >= 0) {
+//     nums1.splice(0, current + 1, ...nums2.splice(0, p2 + 1));
+//   }
+// };
+
+// var nums1 = [3, 4, 5],
+//   nums2 = [1, 2, 5, 6, 8],
+//   m = 3,
+//   n = 5;
+// merge(nums1, m, nums2, n);
