@@ -64,7 +64,7 @@ var merge = function (nums1, m, nums2, n) {
 
 ### 思路 2
 
-从后往前 找出 nums1 中最大的值与 nums2 中的最小值比较 一步步 向前走，
+从后往前 找出 ,并且从后往前插入
 
 ### code2
 
