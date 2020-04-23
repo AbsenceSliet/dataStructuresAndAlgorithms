@@ -49,16 +49,18 @@ Bouns.prototype.setSalay = function (salay) {
 };
 
 Bouns.prototype.setStrategy = function (strategy) {
+  console.log(strategy, "strategy");
   this.strategy = strategy;
 };
 Bouns.prototype.getBouns = function () {
+  console.log(this.strategy, "9999");
   this.strategy.calculate(this.salay);
 };
 
 var bouns = new Bouns();
-Bouns.setSalay(4000);
-Bouns.setStrategy(levelS);
-Bouns.getBouns();
+bouns.setSalay(4000);
+bouns.setStrategy(new levelS());
+bouns.getBouns();
 
 /**
  * 基于js 的策略模式
