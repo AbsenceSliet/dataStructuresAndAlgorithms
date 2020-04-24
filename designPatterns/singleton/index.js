@@ -161,3 +161,24 @@ console.log(myApp);
 //   m = 3,
 //   n = 5;
 // merge(nums1, m, nums2, n);
+
+var maxProfit = function (prices) {
+  if (prices.length < 2) {
+    return 0;
+  }
+  let diff = [];
+  for (let i = 0; i < prices.length - 1; i++) {
+    diff[i] = prices[i + 1] - prices[i];
+  }
+
+  let dp = new Array(prices.length).fill(0);
+  dp[0] = Math.max(0, diff[0]);
+  let max = dp[0];
+  for (let i = 1; i < diff.length; i++) {
+    dp[i] = Math.max(0, dp[i - 1] + diff[i]);
+    max = Math.max(max, dp[i]);
+  }
+  return max;
+};
+var a = [7, 1, 5, 3, 6, 4];
+console.log(maxProfit(a));
