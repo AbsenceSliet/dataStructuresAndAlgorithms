@@ -141,3 +141,8 @@ calculate_Bouns("S", 3000);
     window.Validator = window.V = Validator;
   }
 });
+
+
+
+var a = [7, 1, 5, 3, 6, 4]
+maxProfit(a)
