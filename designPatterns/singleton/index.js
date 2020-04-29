@@ -182,3 +182,22 @@ var maxProfit = function (prices) {
 };
 var a = [7, 1, 5, 3, 6, 4];
 console.log(maxProfit(a));
+
+var a1 = [0, 0, 1, 2];
+var twoSum = function (numbers, target) {
+  var len = numbers.length;
+  var start = 0;
+  var end = len - 1;
+  while (start < end) {
+    if (numbers[start] + numbers[end] === target) {
+      return [start + 1, end + 1];
+    } else if (numbers[start] + numbers[end] < target) {
+      start++;
+    } else {
+      end--;
+    }
+  }
+
+  return [];
+};
+console.log(twoSum(a1, 0));
