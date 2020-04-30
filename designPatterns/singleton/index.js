@@ -201,3 +201,20 @@ var twoSum = function (numbers, target) {
   return [];
 };
 console.log(twoSum(a1, 0));
+
+var majorityElement = function (nums) {
+  let len = nums.length;
+  let count = 0;
+  let res = [];
+  for (let i = 0; i < len; i++) {
+    let num = nums[i];
+    if (count === 0) {
+      res = num;
+    }
+    let step = res == num ? 1 : -1;
+    count += step;
+  }
+  return res;
+};
+var a3 = [3, 3, 4, 4, 5, 4];
+console.log(majorityElement(a3));
