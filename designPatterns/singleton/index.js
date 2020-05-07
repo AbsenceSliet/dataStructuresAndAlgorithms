@@ -218,3 +218,21 @@ var majorityElement = function (nums) {
 };
 var a3 = [3, 3, 4, 4, 5, 4];
 console.log(majorityElement(a3));
+
+var containsNearbyDuplicate = function (nums, k) {
+  let len = nums.length;
+  const visitedMap = new Map();
+  for (let i = 0; i < len; i++) {
+    if (
+      visitedMap.get(nums[i]) != undefined &&
+      Math.abs(i - visitedMap.get(nums[i])) <= k
+    ) {
+      return true;
+    }
+    visitedMap.set(nums[i], i);
+  }
+  return false;
+};
+var a4 = [1, 2, 3, 1],
+  k1 = 3;
+console.log(containsNearbyDuplicate(a4, k1));
