@@ -55,6 +55,10 @@
 var getSum = function (a, b) {
   if (a === 0) return b;
   if (b === 0) return a;
+<<<<<<< HEAD
   return getSum(a ^ b, (a & b) << 1);
+=======
+  return getSum(a ^ b, (a & b) >> 1);
+>>>>>>> dcb318ec9fe10e701bd92f34b057d589e9b6eb71
 };
 ```
