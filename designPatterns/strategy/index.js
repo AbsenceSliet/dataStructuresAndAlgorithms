@@ -142,7 +142,23 @@ calculate_Bouns("S", 3000);
   }
 });
 
+// var a = [7, 1, 5, 3, 6, 4];
+// maxProfit(a);
 
-
-var a = [7, 1, 5, 3, 6, 4]
-maxProfit(a)
+var lengthOfLongestSubstring = function (s) {
+  let len = s.length;
+  if (len === 0) return 0;
+  let traverse = new Map();
+  let left = 0,
+    max = 0;
+  for (let i = 0; i < len; i++) {
+    if (traverse.has(s[i])) {
+      left = Math.max(traverse.get(s[i]) + 1, left);
+    }
+    max = Math.max(max, i - left + 1);
+    traverse.set(s[i], i);
+  }
+  return max;
+};
+let test1 = "abcabcbb";
+console.log(lengthOfLongestSubstring(test1));
